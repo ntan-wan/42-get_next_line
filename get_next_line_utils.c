@@ -1,29 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/04 14:12:06 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/08/04 16:43:53 by ntan-wan         ###   ########.fr       */
+/*   Created: 2022/08/04 16:59:19 by ntan-wan          #+#    #+#             */
+/*   Updated: 2022/08/04 17:17:11 by ntan-wan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-char	*get_next_line(int fd)
+void    read_from_fd(int fd ,char **storage, char **temp)
 {
-	static char *storage;
-	char		*temp;
-
-	if (BUFFER_SIZE <= 0 || fd < 0)
-		return (NULL);
-	temp = NULL;
-	storage = NULL;
-	read_from_fd(fd, &storage, &temp);
-	if (storage != NULL && *storage != '\0')
+	char	*buffer;
+	int		r;
+	
+	buffer = malloc(sizeof(buffer) * (BUFFER_SIZE + 1));
+	if (!buffer)
+		return ;
+	r = 1;
+	while (r > 0)
 	{
-		
+		r = read(fd, buffer, BUFFER_SIZE);
+		if (r == -1)
+		{
+			free_strs();
+			return ;
+		}
 	}
+	buffer[r] = '\0';
+	
 }
