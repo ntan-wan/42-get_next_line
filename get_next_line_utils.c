@@ -1,35 +1,102 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   get_next_line_utils.c                              :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: ntan-wan <ntan-wan@42kl.edu.my>            +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/04 16:59:19 by ntan-wan          #+#    #+#             */
-/*   Updated: 2022/08/04 17:17:11 by ntan-wan         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "get_next_line.h"
 
-void    read_from_fd(int fd ,char **storage, char **temp)
+char    *ft_strdup(const char *str1)
 {
-	char	*buffer;
-	int		r;
-	
-	buffer = malloc(sizeof(buffer) * (BUFFER_SIZE + 1));
-	if (!buffer)
-		return ;
-	r = 1;
-	while (r > 0)
-	{
-		r = read(fd, buffer, BUFFER_SIZE);
-		if (r == -1)
-		{
-			free_strs();
-			return ;
-		}
-	}
-	buffer[r] = '\0';
-	
+    char    *str2;
+    int     i;
+
+    if (!str1)
+        return (ft_strdup(""));
+    i = 0;
+    while (str1[i])
+        i++;
+    str2 = malloc_zero(i + 1, sizeof(str2));
+    if (!str2)
+        return (NULL);
+    i = 0;
+    while (str1[i])
+    {
+        str2[i] = str1[i];
+        i++;
+    }
+    return (str2);
+}
+
+void    *malloc_zero(size_t count, size_t size)
+{
+    size_t          total;
+    void            *ptr;
+    unsigned char   *rtn;
+
+    total = count * size;
+    ptr = malloc(total);
+    if (!ptr)
+        return (NULL);
+    rtn = (unsigned char *)ptr;
+    while (total != 0)
+    {
+        *rtn = '\0';
+        rtn++;
+        total--;
+    }
+    return (rtn);
+}
+
+void    free_strs(char **str1, char **str2, char **str3)
+{
+    if (str1 && *str1)
+    {
+        free(*str1);
+        *str1 = NULL;
+    }
+    if (str2 && *str2)
+    {
+        free(*str2);
+        *str2 = NULL;
+    }
+    if (str3 && *str3)
+    {
+        free(*str3);
+        *str3 = NULL;
+    }
+}
+
+char    *join_strs(const char *str1, const char *str2)
+{
+    char    *str;
+    int     len;
+    int     i;
+
+    len = 0;
+    if (!str1 && !str2)
+        return (NULL);
+    while (str1 && str1[len])
+        len++;
+    i = 0;
+    while (str2 && str2[i])
+        i++;
+    str = malloc_zero(len + i + 1, sizeof(str));
+    if (!str)
+        return (NULL);
+    len = -1;
+    while (str1 && str1[++len])
+        str[len] = str1[len];
+    i = -1;
+    while (str2 && str2[++i])
+        str[len + i] = str2[i];
+    return (str); 
+}
+
+int contain_newline(const char *str)
+{
+    int i;
+
+    i = 0;
+    while (str[i])
+    {
+        if (str[i] == '\n')
+            return (1);
+        i++;
+    }
+    return (0);
 }

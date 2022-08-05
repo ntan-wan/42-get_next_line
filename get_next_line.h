@@ -29,7 +29,16 @@
 #  define BUFFER_SIZE BUFSIZ
 # endif
 
+char	*get_before_newline(const char *str);
+char	*get_after_newline(const char *str);
+char	*parse_line(char **storage, char **temp);
+void	read_from_fd(int fd, char **storage , char **temp);
 char	*get_next_line(int fd);
 
-void	read_from_fd(int fd, char **storage , char **temp);
+/* utils */
+char	*ft_strdup(const char *str1);
+void	*malloc_zero(size_t count, size_t size);
+void	free_strs(char **str1, char **str2, char **str3);
+char	*join_strs(const char *str1, const char *str2);
+int		contain_newline(const char *str);
 #endif
