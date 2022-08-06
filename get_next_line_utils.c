@@ -40,7 +40,7 @@ char	*join_strs(const char *str1, const char *str2)
 	i = 0;
 	while (str2 && str2[i])
 		i++;
-	str = malloc_zero(len + i + 1, sizeof * str);
+	str = malloc_zero(len + i + 1, sizeof(str));
 	if (!str)
 		return (NULL);
 	len = -1;
@@ -62,7 +62,7 @@ char	*ft_strdup(const char *str1)
 	i = 0;
 	while (str1[i])
 		i++;
-	str2 = malloc_zero(i + 1, sizeof * str2);
+	str2 = malloc_zero(i + 1, sizeof(str2));
 	if (!str2)
 		return (NULL);
 	i = 0;

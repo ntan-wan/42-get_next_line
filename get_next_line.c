@@ -22,7 +22,7 @@ char	*get_before_newline(const char *str)
 		i++;
 	if (str[i] != '\0' && str[i] == '\n')
 		i++;
-	result = malloc_zero(i + 1, sizeof * result);
+	result = malloc_zero(i + 1, sizeof(result));
 	if (!result)
 		return (NULL);
 	i = 0;
@@ -53,7 +53,7 @@ char	*get_after_newline(const char *str)
 		i++;
 	if (str[i] != '\0' && str[i] == '\n')
 		i++;
-	result = malloc_zero((j - i) + 1, sizeof * result);
+	result = malloc_zero((j - i) + 1, sizeof(result));
 	if (!result)
 		return (NULL);
 	j = 0;
@@ -70,7 +70,7 @@ void	read_from_fd(int fd, char **storage, char **temp)
 	char	*buffer;
 	int		r;
 
-	buffer = malloc(sizeof * buffer * (BUFFER_SIZE + 1));
+	buffer = malloc(sizeof(buffer) * (BUFFER_SIZE + 1));
 	if (!buffer)
 		return ;
 	r = 1;
