@@ -32,7 +32,7 @@
 char	*get_before_newline(const char *str);
 char	*get_after_newline(const char *str);
 char	*parse_line(char **storage, char **temp);
-void	read_from_fd(int fd, char **storage , char **temp);
+void	read_from_fd(int fd, char **storage, char **temp);
 char	*get_next_line(int fd);
 
 /* utils */
