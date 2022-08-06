@@ -78,17 +78,17 @@ void	*malloc_zero(size_t count, size_t size)
 {
 	size_t			total;
 	void			*ptr;
-	unsigned char	*rtn;
+	unsigned char	*c;
 
 	total = count * size;
 	ptr = malloc(total);
 	if (!ptr)
 		return (NULL);
-	rtn = (unsigned char *)ptr;
+	c = (unsigned char *)ptr;
 	while (total != 0)
 	{
-		*rtn = '\0';
-		rtn++;
+		*c = '\0';
+		c++;
 		total--;
 	}
 	return (ptr);
