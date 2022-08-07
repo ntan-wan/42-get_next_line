@@ -16,8 +16,8 @@
 	depends on the system and the compiler.
 */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
+#ifndef GET_NEXT_LINE_BONUS_H
+# define GET_NEXT_LINE_BONUS_H
 
 # include <sys/types.h>
 # include <sys/uio.h>
