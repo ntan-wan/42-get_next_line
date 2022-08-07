@@ -16,12 +16,8 @@ int main(void)
     {  
         line = get_next_line(fd);
         printf("%s", line);
-        /*line = get_next_line(fd2);
-        printf("%s", line);
-        line = get_next_line(fd);
-        printf("%s", line);
-        line = get_next_line(fd2);
-        printf("%s", line);*/
+        //line = get_next_line(fd2);
+        //printf("%s", line);
     }
     fd = close(fd);
     //fd2 = close(fd2);
